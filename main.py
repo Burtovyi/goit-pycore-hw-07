@@ -112,7 +112,9 @@ class AddressBook:
 
 @input_error
 def add_contact(args, book: AddressBook):
-    name, phone, *_ = args
+    if len(args) < 2:
+        raise ValueError("Command 'add' requires both name and phone number.")
+    name, phone = args[:2]
     record = book.find(name)
     message = "Contact updated."
     if record is None:
@@ -163,7 +165,7 @@ def main():
             print("How can I help you?")
 
         elif command == "add":
-            print(add_contact(args, book))
+            print(add_contact(args[0].split(), book))
 
         elif command == "change":
             name, old_phone, new_phone, *_ = args

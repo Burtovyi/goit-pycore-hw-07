@@ -155,7 +155,7 @@ def main():
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
-        command, *args = user_input.split(maxsplit=1)
+        command, *args = user_input.split()
 
         if command in ["close", "exit"]:
             print("Good bye!")
@@ -165,7 +165,7 @@ def main():
             print("How can I help you?")
 
         elif command == "add":
-            print(add_contact(args[0].split(), book))
+            print(add_contact(args, book))
 
         elif command == "change":
             name, old_phone, new_phone, *_ = args
